@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ayamai-site
+    runtime: static
+    buildCommand: echo "No build step needed"
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
