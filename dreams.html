@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AYAMAI DREAMS Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE  calm, scholarly, open: an invitation to researchers, not a pitch
+   IDEA   a plate from a scientific monograph: one large labelled figure, notes in the margin
+   PICTURE the U to D to new U cycle drawn as a loop of five stations, affect at its centre, a token travelling round
+   COLOUR white ground, ink, carmine for the loop, prussian for memory and the 2025 band; night is #0f1217
+   TYPE   Literata for display and reading, Inter for labels and table cells
+   LAYOUT title across the top with the plate full width beneath; sections alternate text beside a figure, one prussian band */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f1217);--ink:light-dark(#10131a,#e7e9ef);--soft:light-dark(#4a5160,#a9b0bf);--rule:light-dark(#dfe2e8,#272c36);--panel:light-dark(#f5f6f8,#161a22);--car:light-dark(#c1121f,#ff6b6b);--pru:light-dark(#0b4f8a,#77b2ec);--band:light-dark(#0b4f8a,#0b2a47);--bandink:#f3f7fb}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Literata,Georgia,serif;overflow-x:clip}
+a{color:var(--pru)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--car);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,80px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.sans{font-family:Inter,system-ui,sans-serif}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,4.6vw,52px);max-width:20ch}
+h2{font-size:clamp(28px,3.2vw,38px);margin-bottom:18px}
+h3{font-size:20px;margin-bottom:6px;line-height:1.25}
+p{margin:0 0 14px;max-width:66ch}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px)}
+.brand{font-weight:700;font-size:20px;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+.links{display:flex;gap:4px 18px;flex-wrap:wrap;font:500 15px Inter,system-ui,sans-serif}
+.links a{color:var(--soft);text-decoration:none;padding:8px 0}
+.links a:hover,.links a[aria-current]{color:var(--ink)}
+.hero{display:grid;gap:28px}
+.lede{font-size:clamp(18px,1.6vw,20px);color:var(--soft);max-width:60ch;margin-top:16px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:999px;font:600 15px Inter,system-ui,sans-serif;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.main{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--car)}
+.status{font:14px Inter,system-ui,sans-serif;color:var(--soft);margin-top:18px}
+.fig{position:relative;min-height:440px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font-family:Inter,system-ui,sans-serif;paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+.cap{font:14px/1.5 Inter,system-ui,sans-serif;color:var(--soft);margin-top:10px;max-width:none}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 36px}
+.cols>div{border-top:2px solid var(--ink);padding-top:14px}
+.cols p{font-size:16px}
+.note{font-size:15px;color:var(--soft)}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:start}
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+.qs div{padding-left:16px;border-left:2px solid var(--car)}
+.qs p{font-size:16px;margin:0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font:15px/1.45 Inter,system-ui,sans-serif}
+th{text-align:left;font-weight:600;font-size:14px;color:var(--soft);border-bottom:1.5px solid var(--ink);padding:10px 12px 10px 0}
+td{border-bottom:1px solid var(--rule);padding:12px 12px 12px 0;vertical-align:top}
+td code{font-size:13.5px;color:var(--pru);overflow-wrap:anywhere}
+.tag{display:inline-block;white-space:nowrap;font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;border:1px solid currentColor}
+.t-w{color:var(--pru)}.t-e{color:var(--car)}.t-p{color:var(--soft)}
+.blue{background:var(--band);color:var(--bandink)}
+.blue p,.blue .note{color:#d5e2ef}
+.blue a{color:#fff}
+.route{list-style:none;padding:0;margin:28px 0 8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s}
+.route li{position:relative;padding:44px 16px 0 0;font:15px/1.45 Inter,system-ui,sans-serif}
+.route li::before{content:"";position:absolute;top:13px;left:0;right:0;height:2px;background:#8fb6d9}
+.route li::after{content:"";position:absolute;top:5px;left:0;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid #ff8a8a}
+.route b{display:block;font-size:16px;color:#fff;margin-bottom:4px}
+.route span{color:#d5e2ef}
+.back{font:14px Inter,system-ui,sans-serif;color:#d5e2ef;margin-top:10px}
+.steps{list-style:none;padding:0;margin:0;border-left:2px solid var(--rule)}
+.steps li{position:relative;padding:0 0 22px 26px}
+.steps li::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2.5px solid var(--car)}
+.steps p{font-size:16px;margin:0}
+.refs{columns:2;column-gap:36px;padding-left:18px;font-size:15px;color:var(--soft)}
+.refs li{break-inside:avoid;margin-bottom:8px}
+.who{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:22px 0}
+.who div{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px;font:15px/1.45 Inter,system-ui,sans-serif}
+.who b{display:block;margin-bottom:4px;font-size:16px}
+.contact{display:flex;gap:12px 28px;flex-wrap:wrap;align-items:center;font:15px Inter,system-ui,sans-serif}
+footer{border-top:1px solid var(--rule);font:14px Inter,system-ui,sans-serif;color:var(--soft)}
+footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+@media(max-width:900px){.cols{grid-template-columns:minmax(0,1fr)}.split{grid-template-columns:minmax(0,1fr)}.who{grid-template-columns:repeat(2,minmax(0,1fr))}.route{grid-template-columns:minmax(0,1fr)}.route li{padding:0 0 20px 34px}.route li::before{top:0;bottom:0;left:8px;right:auto;width:2px;height:auto}.route li::after{top:2px}}
+@media(max-width:600px){.qs{grid-template-columns:minmax(0,1fr)}.refs{columns:1}.who{grid-template-columns:minmax(0,1fr)}.links{font-size:14px;gap:2px 14px}.fig{min-height:380px}table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--rule)}.stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:4px 0}.stack td::before{content:attr(data-l);font-weight:600;color:var(--soft);flex:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><div class="wrap">
+  <a class="brand" href="index.html">AYAMAI</a>
+  <div class="links">
+    <a href="dreams.html" aria-current="page">DREAMS</a><a href="sphota.html">Sphota</a><a href="#idea">DREAMS idea</a><a href="#prototype">DREAMS prototype</a><a href="#collaborate">Collaborate</a>
+    <a href="https://github.com/masthangithub/Ayamai">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="band" id="top"><div class="wrap hero">
+  <div>
+    <h1>Can a machine keep learning, and keep returning to what it has learned?</h1>
+    <p class="lede">DREAMS (Data Relations, Entropy, And Mind Simulations) is an AYAMAI project about continual learning, memory and reflective loops in AI systems. We are sharing early sketches and open questions to find people who want to explore them with us. It is not a product, and it makes no claims about machine awareness.</p>
+    <div class="cta">
+      <a class="btn main" href="https://github.com/masthangithub/Ayamai">Read the code on GitHub</a>
+      <a class="btn" href="#collaborate">Get in touch</a>
+    </div>
+    <p class="status">DREAMS project · Started 2025 · Early symbolic prototypes in Python · Open to collaborators</p>
+  </div>
+  <div>
+    <div class="fig" id="plate" role="img" aria-label="Diagram of the AYAMAI loop: perceive, encode, link, dream, narrate, then back to perceive, with affect at the centre adjusting the loop."><svg id="plateSvg"></svg></div>
+    <p class="cap">The working hypothesis in one picture. An experience is encoded as data, linked into memory, recombined during a “dream” pass, and narrated back as a revised understanding. Affect-like signals set how far each pass wanders. Each station names the folder where its sketch lives.</p>
+  </div>
+</div></header>
+
+<section class="band" id="idea" style="border-top:1px solid var(--rule)"><div class="wrap">
+  <h2>The DREAMS idea, in three parts</h2>
+  <p class="note">These are framings we find useful for asking questions. They are analogies, not descriptions of how the brain works.</p>
+  <div class="cols" style="margin-top:22px">
+    <div><h3>The model as substrate</h3><p>We treat a language model as a store of data, the relations between data, and patterns of how information flows. It is where knowledge sits, not the whole of a system.</p></div>
+    <div><h3>Workflows as thinking</h3><p>An agentic workflow, with tools, resources, prompts and a logical order of steps, is one act of “thinking”. Each such workflow is its own small AI application.</p></div>
+    <div><h3>Learning without forgetting</h3><p>When results of new tasks feed back as training data, models tend to lose older skills. We want to study established remedies here: replay, parameter regularisation, growing architectures and meta-learning.</p></div>
+  </div>
+  <div class="split" style="margin-top:44px">
+    <div>
+      <h2 style="font-size:28px">Three DREAMS working terms</h2>
+      <p class="note">Our own vocabulary, kept deliberately simple until each can be given a precise data type.</p>
+    </div>
+    <div class="cols" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <div><h3>U</h3><p>Understanding: a perception or insight, before it is written down.</p></div>
+      <div><h3>D</h3><p>Data: a symbolic description of U that a system can store, link and recombine.</p></div>
+      <div><h3>UI</h3><p>Understanding Intelligence: the loop U → D → new U, repeated over time.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="questions" style="background:var(--panel);border-block:1px solid var(--rule)"><div class="wrap split">
+  <div>
+    <h2>DREAMS research questions</h2>
+    <p>Each of these connects to an existing line of research. We list the connections so that the questions can be tested rather than argued.</p>
+  </div>
+  <div class="qs">
+    <div><h3>Can “dreams” act as replay?</h3><p>If a system generates recombinations of past experience, can that output be used to reduce forgetting? This is close to generative replay.</p></div>
+    <div><h3>What is a unit of understanding?</h3><p>What data structure should U become: an embedding, a graph node, a short text, or a mix? Today it is a placeholder.</p></div>
+    <div><h3>Is affect a useful control signal?</h3><p>Could signals like curiosity or uncertainty decide what to recall and how far to explore? This overlaps with work on intrinsic motivation.</p></div>
+    <div><h3>How should memory change?</h3><p>When should a memory graph consolidate, prune or re-link? Complementary learning systems theory offers one starting model.</p></div>
+    <div><h3>How would we know it helped?</h3><p>Every loop needs a measure. For forgetting, the standard ones are backward and forward transfer on a sequence of tasks.</p></div>
+    <div><h3>What can older traditions offer?</h3><p>Ideas from Ayurveda and Kashmir Shaivism shaped some sketches. We treat them as sources of metaphor and questions, not as evidence.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="prototype"><div class="wrap">
+  <h2>The DREAMS prototype: what exists today</h2>
+  <p>The code is a set of small Python sketches written in 2025. Most modules are symbolic, rule-based or template-driven. Nothing here is a trained system. We list each one honestly so you can see where to start.</p>
+  <div class="scroll" style="margin-top:20px">
+  <table class="stack">
+    <thead><tr><th>Module</th><th>What it does now</th><th>State</th></tr></thead>
+    <tbody id="mods"></tbody>
+  </table>
+  </div>
+  <p class="cap">Working sketch: runs end to end on toy inputs. Exploratory: an idea expressed in code, with hand-set values. Placeholder: structure only, logic still to be written.</p>
+</div></section>
+
+<section class="band blue" id="loop2025"><div class="wrap">
+  <h2>A DREAMS loop sketched in mid-2025</h2>
+  <p>The <code style="color:#fff">dream_loop/dreamlike_3</code> scripts chain a language model, a relevance filter and web retrieval into a goal-directed cycle that feeds its own output back in. This was written by hand, before agent frameworks made such loops routine.</p>
+  <ol class="route">
+    <li><b>Goal and seed</b><span>A goal and an input description start the cycle.</span></li>
+    <li><b>Draft</b><span>An LLM writes ten candidate lines toward the goal.</span></li>
+    <li><b>Select</b><span>TF-IDF similarity keeps the lines closest to the goal.</span></li>
+    <li><b>Retrieve</b><span>Web pages about the goal add context terms.</span></li>
+    <li><b>Remix</b><span>An entropy linker recombines tags into the next input.</span></li>
+  </ol>
+  <p class="back">↺ The remixed text becomes the next seed, for a set number of iterations.</p>
+  <p class="note" style="margin-top:22px">The same pattern is now common under names such as reflection, iterative retrieval and self-refinement. We share this early version as a starting point to rebuild with current tools, not as a claim of priority.</p>
+</div></section>
+
+<section class="band" id="next"><div class="wrap split">
+  <div>
+    <h2>Next steps for DREAMS</h2>
+    <p>Models, agent frameworks and fine-tuning methods have moved quickly since these sketches. The next phase is to make each idea measurable.</p>
+    <p class="note">Directions, not commitments. The order may change with what collaborators bring.</p>
+  </div>
+  <ol class="steps">
+    <li><h3>Give U and D precise types</h3><p>Replace the placeholder encoder with a defined structure, likely a graph node holding an embedding, a short text and typed relations.</p></li>
+    <li><h3>Rebuild the loops on an agent framework</h3><p>Move the dream and narration loops onto a graph-based orchestration library with persistent memory, so every step is inspectable.</p></li>
+    <li><h3>Test dreaming as generative replay</h3><p>Fine-tune small open models with adapters on a sequence of tasks, and compare no replay, real replay and generated replay on measured forgetting.</p></li>
+    <li><h3>Turn affect into measured signals</h3><p>Swap hand-set emotion vectors for quantities a system can compute, such as prediction error or uncertainty, and test whether they improve recall.</p></li>
+    <li><h3>Publish what we find</h3><p>Share code, data and results openly, including results that do not support the idea.</p></li>
+  </ol>
+</div></section>
+
+<section class="band" style="background:var(--panel);border-block:1px solid var(--rule)"><div class="wrap split">
+  <div><h2 style="font-size:28px">Related work we are reading</h2><p class="note">A starting list, not a claim of building on all of it.</p></div>
+  <ul class="refs">
+    <li>McClelland, McNaughton and O’Reilly (1995). Complementary learning systems.</li>
+    <li>Kirkpatrick et al. (2017). Elastic weight consolidation.</li>
+    <li>Shin et al. (2017). Continual learning with deep generative replay.</li>
+    <li>Rusu et al. (2016). Progressive neural networks.</li>
+    <li>Finn, Abbeel and Levine (2017). Model-agnostic meta-learning.</li>
+    <li>Pathak et al. (2017). Curiosity-driven exploration by self-supervised prediction.</li>
+    <li>Shinn et al. (2023). Reflexion: language agents with verbal reinforcement learning.</li>
+    <li>Madaan et al. (2023). Self-Refine: iterative refinement with self-feedback.</li>
+  </ul>
+</div></section>
+
+<section class="band" id="collaborate"><div class="wrap">
+  <h2>Who we hope to hear from</h2>
+  <p>This is a shared exploration at an early stage. If one of the questions above interests you, we would be glad to talk, review a pull request, or plan an experiment together.</p>
+  <div class="who">
+    <div><b>Machine learning researchers</b>Continual learning, neuro-symbolic methods, agents and memory.</div>
+    <div><b>Cognitive scientists</b>Memory consolidation, sleep and replay, curiosity and affect.</div>
+    <div><b>Philosophers and linguists</b>What “understanding” could mean, and how to test for it.</div>
+    <div><b>Scholars of Indian thought</b>Ayurveda, Sanskrit epistemology and theories of perception.</div>
+  </div>
+  <div class="contact">
+    <a class="btn main" href="https://github.com/masthangithub/Ayamai/issues">Open an issue on GitHub</a>
+    <span>Email: <a href="mailto:masthan@ayamai.com">masthan@ayamai.com</a></span>
+    <span>Original vision note: <a href="https://maya19.godaddysites.com">maya19.godaddysites.com</a></span>
+  </div>
+</div></section>
+
+<footer class="band" style="padding-block:24px"><div class="wrap">
+  <span>DREAMS · an AYAMAI project</span>
+  <span><a href="https://github.com/masthangithub/Ayamai">github.com/masthangithub/Ayamai</a></span>
+</div></footer>
+
+<script>
+{
+const mods=[
+ ["memory_linker/memory_graph.py","Stores concepts as nodes, links them by named relations, and walks paths through them to a set depth.","w"],
+ ["dream_loop/dream_engine.py","Recombines memory fragments with an entropy setting; can call a small local model (distilgpt2) and draw on mood-tagged memories.","w"],
+ ["dream_loop/dreamlike_3_*.py","Goal-directed loop: LLM drafts, TF-IDF selection, web retrieval and remixing over several iterations.","w"],
+ ["story_generation/resonant_story_builder.py","Assembles a short narrative from a glimpse, memory echoes and dream fragments, using a template.","w"],
+ ["demo/demo_resonant_loop.py","Runs the perception, memory, dream and story modules together as one demo.","w"],
+ ["notebooks/story_narration_loop.ipynb","Walks through encoding, memory linking and a dream cycle step by step.","w"],
+ ["emotion_model/affective_states.py","Named states (curiosity, joy, fear and others) mapped to hand-set modulation values.","e"],
+ ["phonofeel/","Maps sound frequency bands to affect tags and builds a combined sound and feeling embedding.","e"],
+ ["gh_wall_simulator/","Models a limit on what an agent can perceive, with five filters named after the kañcukas of Kashmir Shaivism.","e"],
+ ["effect_thought/","Starts from a desired feeling and generates possible causes or goals, a form of backward reasoning.","e"],
+ ["ud_transformer/understanding_encoder.py","Turns a concept into attributes, behaviours and relations. The decomposition is a fixed template for now.","p"]
+];
+const st={w:["Working sketch","t-w"],e:["Exploratory","t-e"],p:["Placeholder","t-p"]};
+document.getElementById("mods").innerHTML=mods.map(m=>`<tr><td data-l="Module"><code>${m[0]}</code></td><td data-l="Now">${m[1]}</td><td data-l="State"><span class="tag ${st[m[2]][1]}">${st[m[2]][0]}</span></td></tr>`).join("");
+
+const s=document.getElementById("plateSvg");
+const nodes=[
+ ["Perceive","U arrives","gh_wall_simulator"],
+ ["Encode","U becomes D","ud_transformer"],
+ ["Link","D joins memory","memory_linker"],
+ ["Dream","entropy remix","dream_loop"],
+ ["Narrate","a revised U","story_generation"]
+];
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const draw=()=>{
+  const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
+  const narrow=W<560;
+  const cx=W/2,cy=H/2;
+  const rx=Math.min(narrow?W*0.34:W*0.32,380),ry=Math.min(H*0.32,150);
+  const pts=nodes.map((n,i)=>{const a=-Math.PI/2+i*2*Math.PI/nodes.length;return[cx+rx*Math.cos(a),cy+ry*Math.sin(a),a]});
+  const path=`M ${cx} ${cy-ry} A ${rx} ${ry} 0 1 1 ${cx-0.01} ${cy-ry}`;
+  let g=`<defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--car)"/></marker></defs>`;
+  g+=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" stroke="var(--car)" stroke-width="2.5"/>`;
+  pts.forEach((p,i)=>{const q=pts[(i+1)%pts.length];const ma=(p[2]+(i==pts.length-1?p[2]+2*Math.PI/pts.length:q[2]))/2;const mx=cx+rx*Math.cos(ma),my=cy+ry*Math.sin(ma);const tx=-rx*Math.sin(ma),ty=ry*Math.cos(ma);const L=Math.hypot(tx,ty);g+=`<line x1="${mx-tx/L*4}" y1="${my-ty/L*4}" x2="${mx+tx/L*4}" y2="${my+ty/L*4}" stroke="var(--car)" stroke-width="2.5" marker-end="url(#ar)"/>`});
+  const ar=Math.min(rx,ry)*0.42;
+  g+=`<circle cx="${cx}" cy="${cy}" r="${ar}" fill="var(--panel)" stroke="var(--pru)" stroke-width="1.5" stroke-dasharray="4 5"/>`;
+  g+=`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-size="16" font-weight="600" fill="var(--pru)">Affect</text>`;
+  g+=`<text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="13" fill="var(--soft)">${narrow?"sets wander":"sets how far it wanders"}</text>`;
+  if(!narrow)g+=`<text x="${cx}" y="${cy+ar+20}" text-anchor="middle" font-size="13" fill="var(--soft)">emotion_model</text>`;
+  pts.forEach((p,i)=>{
+    const [x,y,a]=p,n=nodes[i];
+    g+=`<circle cx="${x}" cy="${y}" r="11" fill="var(--bg)" stroke="var(--car)" stroke-width="3.5"/>`;
+    const c=Math.cos(a),sn=Math.sin(a);
+    let anc="middle",lx=x,ly=y;
+    if(i===0){ly=y-24}
+    else if(narrow){ly=sn<0?y-42:y+30}
+    else if(Math.abs(c)>0.3){anc=c>0?"start":"end";lx=x+(c>0?20:-20);ly=y+(sn>0?14:-6)}
+    else{ly=y+30}
+    const top=i===0;
+    const lines=narrow?[[n[0],16,600,"var(--ink)"],[n[1],13,400,"var(--soft)"]]:[[n[0],17,600,"var(--ink)"],[n[1],14,400,"var(--soft)"],[n[2],13,400,"var(--pru)"]];
+    const start=top?ly-(lines.length-1)*18:ly;
+    lines.forEach((t,k)=>{g+=`<text x="${lx}" y="${start+k*18}" text-anchor="${anc}" font-size="${t[1]}" font-weight="${t[2]}" fill="${t[3]}">${t[0]}</text>`});
+  });
+  g+=`<path id="orbit" d="${path}" fill="none" stroke="none"/>`;
+  g+=`<circle r="6" fill="var(--pru)">${reduce?"":`<animateMotion dur="14s" repeatCount="indefinite"><mpath href="#orbit"/></animateMotion>`}</circle>`;
+  s.innerHTML=g;
+};
+const plateObs=new ResizeObserver(draw);plateObs.observe(s);draw();
+}
+</script>
+</body>
+</html>

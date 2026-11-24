@@ -1,6 +1,6 @@
 # AYAMAI website
 
-A single static page (`index.html`). No build step.
+Three static pages: `index.html` (AYAMAI home), `dreams.html` (DREAMS project) and `sphota.html` (Sphota project). No build step.
 
 ## Deploy on Render
 

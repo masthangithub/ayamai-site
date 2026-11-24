@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AYAMAI Sphota Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE  calm, scholarly; a research question, stated carefully
+   IDEA   a plate from a phonetics monograph: the vowel chart with margin notes
+   PICTURE F1 by F2 vowel space with /i e a o u/, size associations marked as tendencies
+   COLOUR same as the AYAMAI site: white, ink, carmine, prussian, one prussian band
+   TYPE   Literata for display and reading, Inter for labels
+   LAYOUT title across the top, chart full width beneath; text beside figures below */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f1217);--ink:light-dark(#10131a,#e7e9ef);--soft:light-dark(#4a5160,#a9b0bf);--rule:light-dark(#dfe2e8,#272c36);--panel:light-dark(#f5f6f8,#161a22);--car:light-dark(#c1121f,#ff6b6b);--pru:light-dark(#0b4f8a,#77b2ec);--band:light-dark(#0b4f8a,#0b2a47);--bandink:#f3f7fb}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Literata,Georgia,serif;overflow-x:clip}
+a{color:var(--pru)}
+a:focus-visible{outline:3px solid var(--car);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,80px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,4.6vw,52px);max-width:22ch}
+h2{font-size:clamp(28px,3.2vw,38px);margin-bottom:18px}
+h3{font-size:20px;margin-bottom:6px;line-height:1.25}
+p{margin:0 0 14px;max-width:66ch}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px)}
+.brand{font-weight:700;font-size:20px;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+.links{display:flex;gap:4px 18px;flex-wrap:wrap;font:500 15px Inter,system-ui,sans-serif}
+.links a{color:var(--soft);text-decoration:none;padding:8px 0}
+.links a:hover,.links a[aria-current]{color:var(--ink)}
+.lede{font-size:clamp(18px,1.6vw,20px);color:var(--soft);max-width:62ch;margin-top:16px}
+.status{font:14px Inter,system-ui,sans-serif;color:var(--soft);margin-top:18px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:999px;font:600 15px Inter,system-ui,sans-serif;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.main{background:var(--ink);color:var(--bg)}
+.fig{position:relative;min-height:420px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:28px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font-family:Inter,system-ui,sans-serif;paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+.cap{font:14px/1.5 Inter,system-ui,sans-serif;color:var(--soft);margin-top:10px;max-width:none}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 36px}
+.cols>div{border-top:2px solid var(--ink);padding-top:14px}
+.cols p{font-size:16px}
+.note{font-size:15px;color:var(--soft)}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:start}
+.find{list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.find li{padding-left:16px;border-left:2px solid var(--pru)}
+.find b{display:block;font-weight:600}
+.find p{font-size:16px;margin:0}
+.find .src{font:13.5px Inter,system-ui,sans-serif;color:var(--soft);margin-top:4px}
+.hyp{font-size:clamp(20px,2vw,24px);line-height:1.45;border-left:3px solid var(--car);padding:4px 0 4px 20px;max-width:56ch;margin:8px 0 22px}
+.blue{background:var(--band);color:var(--bandink)}
+.blue p,.blue .note{color:#d5e2ef}
+.route{list-style:none;padding:0;margin:28px 0 8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.route li{position:relative;padding:44px 16px 0 0;font:15px/1.45 Inter,system-ui,sans-serif}
+.route li::before{content:"";position:absolute;top:13px;left:0;right:0;height:2px;background:#8fb6d9}
+.route li::after{content:"";position:absolute;top:5px;left:0;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid #ff8a8a}
+.route b{display:block;font-size:16px;color:#fff;margin-bottom:4px}
+.route span{color:#d5e2ef}
+.tools{font:14px Inter,system-ui,sans-serif;color:#d5e2ef;margin-top:14px;max-width:none}
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+.qs div{padding-left:16px;border-left:2px solid var(--car)}
+.qs p{font-size:16px;margin:0}
+.agents{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.agents div{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px;font:15px/1.45 Inter,system-ui,sans-serif}
+.agents b{display:block;margin-bottom:4px;font-size:16px}
+.contact{display:flex;gap:12px 28px;flex-wrap:wrap;align-items:center;font:15px Inter,system-ui,sans-serif;margin-top:20px}
+footer{border-top:1px solid var(--rule);font:14px Inter,system-ui,sans-serif;color:var(--soft)}
+footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+@media(max-width:900px){.cols,.split{grid-template-columns:minmax(0,1fr)}.agents{grid-template-columns:repeat(2,minmax(0,1fr))}.route{grid-template-columns:minmax(0,1fr)}.route li{padding:0 0 20px 34px}.route li::before{top:0;bottom:0;left:8px;right:auto;width:2px;height:auto}.route li::after{top:2px}}
+@media(max-width:600px){.qs,.agents{grid-template-columns:minmax(0,1fr)}.links{font-size:14px;gap:2px 14px}.fig{min-height:360px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><div class="wrap">
+  <a class="brand" href="index.html">AYAMAI</a>
+  <div class="links">
+    <a href="dreams.html">DREAMS</a><a href="sphota.html" aria-current="page">Sphota</a><a href="#method">Method</a><a href="#collaborate">Collaborate</a>
+  </div>
+</div></nav>
+
+<header class="band"><div class="wrap">
+  <h1>Does the sound of a word carry part of its meaning, across unrelated languages?</h1>
+  <p class="lede">Sphota is an AYAMAI project on sound and meaning. Indian grammarians described meaning as something that “bursts forth” from sound (sphoṭa), and the Vedas were preserved for centuries purely by recitation. That prompted a question we want to test with today’s audio analysis and machine learning: are there sound patterns tied to meaning that hold across languages with no shared history? We do not assume the answer is yes.</p>
+  <p class="status">Sphota project · Research design stage · Open to phoneticians, linguists and speech ML researchers</p>
+  <div class="fig" id="vowel" role="img" aria-label="Vowel chart plotting first formant against second formant for the vowels i, e, a, o and u. The vowel i, often found in words for small things, sits at high second formant and low first formant. Open and back vowels sit in the region associated with large size in experiments."><svg id="vowelSvg"></svg></div>
+  <p class="cap">Where the known evidence starts. The five vowels plotted by their first two resonances (formants), with approximate adult averages. Experiments since Sapir (1929) find that people link /i/ with small things and open or back vowels with large ones, and Blasi et al. (2016) found /i/ over-represented in words for “small” across thousands of languages. These are statistical tendencies, not rules.</p>
+</div></header>
+
+<section class="band" style="border-top:1px solid var(--rule)"><div class="wrap">
+  <h2>Where the question comes from</h2>
+  <p class="note">These traditions shaped the question. We treat them as inspiration, not as evidence.</p>
+  <div class="cols" style="margin-top:22px">
+    <div><h3>Bhartṛhari’s sphoṭa</h3><p>In the Vākyapadīya (about the 5th century CE), meaning is grasped as a whole that is revealed through sound, rather than assembled letter by letter.</p></div>
+    <div><h3>Vedic recitation</h3><p>The Vedas were passed on orally with exacting rules for pronunciation (śikṣā), one of the world’s earliest systematic phonetics traditions.</p></div>
+    <div><h3>Plato’s Cratylus</h3><p>A dialogue on whether names belong to things by nature or by convention, the same debate modern linguistics calls iconicity versus arbitrariness.</p></div>
+  </div>
+</div></section>
+
+<section class="band" style="background:var(--panel);border-block:1px solid var(--rule)"><div class="wrap split">
+  <div>
+    <h2>What research already shows</h2>
+    <p>Most of the link between sound and meaning is arbitrary: “water”, “jal” and “mizu” share little. But careful studies find small, repeatable departures from pure arbitrariness. Our work starts from these findings, and from the explanations that already account for them.</p>
+  </div>
+  <ul class="find">
+    <li><b>Shape and size from sound</b><p>People across cultures match “bouba” to round shapes and “kiki” to spiky ones, and “mal” to a larger table than “mil”.</p><div class="src">Köhler 1929; Sapir 1929; Ramachandran and Hubbard 2001</div></li>
+    <li><b>Patterns across thousands of languages</b><p>Some basic meanings show sound preferences beyond chance, such as /i/ in words for “small” and nasal sounds in words for “nose”.</p><div class="src">Blasi et al. 2016, PNAS</div></li>
+    <li><b>The frequency code in animals</b><p>Across many species, low and harsh calls signal size or threat, and high, tonal calls signal fear or appeasement.</p><div class="src">Morton 1977; Ohala 1984</div></li>
+    <li><b>A known alternative explanation</b><p>Words like “mama” and “papa” are similar worldwide because they are among the first sounds infants can make, which adults then assign to parents.</p><div class="src">Jakobson 1960</div></li>
+  </ul>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <h2>Our question, stated so it can fail</h2>
+  <p class="hyp">From recordings alone, can a model predict which basic meaning a word expresses, in language families it never saw during training, better than a model that knows only which phonemes the word contains?</p>
+  <p>Testing on unseen language families rules out shared ancestry and borrowed words. Comparing against a phoneme-only model asks whether the acoustic detail adds anything beyond the categories linguists already use. A clear “no” is a useful result too, and we will publish it.</p>
+</div></section>
+
+<section class="band blue" id="method"><div class="wrap">
+  <h2>Method</h2>
+  <p>Built from existing, well-tested tools. We are not inventing new models for the first round.</p>
+  <ol class="route">
+    <li><b>Gather</b><span>Recordings of the same basic meanings, such as a Swadesh list, in many languages.</span></li>
+    <li><b>Segment</b><span>Forced alignment cuts each recording into words and individual sounds.</span></li>
+    <li><b>Measure</b><span>Per sound: formants F1 to F3, pitch, MFCCs and mel spectrograms.</span></li>
+    <li><b>Predict</b><span>Simple classifiers learn meaning from sound, alongside a phoneme-only baseline.</span></li>
+    <li><b>Hold out</b><span>Score only on language families left out of training.</span></li>
+  </ol>
+  <p class="tools">Tools: Librosa, Praat through Parselmouth, Montreal Forced Aligner, scikit-learn and PyTorch. Data sources we are looking at: PHOIBLE phoneme inventories, AI4Bharat’s Kathbath, and the Vāksañcayaḥ Sanskrit speech corpus from IIT Bombay.</p>
+</div></section>
+
+<section class="band"><div class="wrap split">
+  <div>
+    <h2>Questions we ask of every result</h2>
+    <p>The study builds its own skepticism in. Any pattern we find has to survive these before we report it as more than a coincidence.</p>
+  </div>
+  <div class="qs">
+    <div><h3>Is it only mouth shape?</h3><p>Rounded lips lower every formant. A shared resonance may be a fact about anatomy, not meaning.</p></div>
+    <div><h3>Is it infant babbling?</h3><p>Kinship words may follow the order in which babies learn sounds, as Jakobson proposed.</p></div>
+    <div><h3>Is it history?</h3><p>Related or neighbouring languages share words. Results must hold across unrelated families and isolates.</p></div>
+    <div><h3>Did we go looking for it?</h3><p>Meanings, features and tests are fixed before analysis, so we cannot pick only the examples that fit.</p></div>
+  </div>
+</div></section>
+
+<section class="band" style="background:var(--panel);border-block:1px solid var(--rule)"><div class="wrap">
+  <h2>A research assistant built from agents</h2>
+  <p>Alongside the experiments, we are designing an agent loop to keep the literature review honest and current. Each role is a separate step in a LangGraph workflow, and the Critic can send the loop back for more evidence.</p>
+  <div class="agents" style="margin-top:20px">
+    <div><b>Researcher</b>Searches papers and datasets on phonetics, sound symbolism and bioacoustics.</div>
+    <div><b>Librarian</b>Retrieves from our own notes and texts on Indian and Greek theories of language.</div>
+    <div><b>Analyst</b>Runs the audio feature scripts and reports what the measurements show.</div>
+    <div><b>Critic</b>Names the weakest link, offers a counter-explanation, and sets the next question.</div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap split">
+  <div><h2>If something holds up</h2><p class="note">Possible uses, all conditional on the results.</p></div>
+  <div class="cols" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:22px">
+    <div><h3>Low-resource languages</h3><p>Acoustic features that transfer across languages could help speech tools for languages with little recorded data.</p></div>
+    <div><h3>Voice and wellbeing</h3><p>The same feature pipeline applies to vocal biomarkers, where speech is studied as a signal of health. We have an early filter-bank prototype tested on synthetic data.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="collaborate" style="border-top:1px solid var(--rule)"><div class="wrap">
+  <h2>Work on this with us</h2>
+  <p>We would especially value phoneticians, field linguists with recordings of unrelated languages, Sanskrit scholars familiar with śikṣā, and speech machine learning researchers.</p>
+  <div class="contact">
+    <a class="btn main" href="https://github.com/masthangithub/Ayamai/issues">Open an issue on GitHub</a>
+    <span>Email: <a href="mailto:masthan@ayamai.com">masthan@ayamai.com</a></span>
+    <a href="index.html">AYAMAI home</a>
+  </div>
+</div></section>
+
+<footer class="band" style="padding-block:24px"><div class="wrap">
+  <span>Sphota · an AYAMAI project</span>
+  <span><a href="https://github.com/masthangithub/Ayamai">github.com/masthangithub/Ayamai</a></span>
+</div></footer>
+
+<script>
+{
+const s=document.getElementById("vowelSvg");
+const V=[["i",2300,280,"small"],["e",2000,450,""],["a",1300,750,"large"],["o",900,480,"large"],["u",850,320,""]];
+const draw=()=>{
+  const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
+  const narrow=W<560;
+  const L=narrow?44:70,R=narrow?20:60,T=34,B=48;
+  const f2min=600,f2max=2600,f1min=200,f1max=900;
+  const X=f2=>L+(f2max-f2)/(f2max-f2min)*(W-L-R);
+  const Y=f1=>T+(f1-f1min)/(f1max-f1min)*(H-T-B);
+  let g="";
+  const t2=narrow?[2500,1500,700]:[2500,2000,1500,1000];
+  t2.forEach(v=>{g+=`<line x1="${X(v)}" y1="${T}" x2="${X(v)}" y2="${H-B}" stroke="var(--rule)"/><text x="${X(v)}" y="${H-B+20}" text-anchor="middle" font-size="13" fill="var(--soft)">${v}</text>`});
+  [300,500,700,900].forEach(v=>{g+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" stroke="var(--rule)"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end" font-size="13" fill="var(--soft)">${v}</text>`});
+  g+=`<text x="${W-R}" y="${H-8}" text-anchor="end" font-size="13" fill="var(--soft)">${narrow?"F2 (Hz) →":"F2, second formant (Hz): front to back →"}</text>`;
+  g+=`<text x="${L}" y="${T-14}" font-size="13" fill="var(--soft)">${narrow?"F1 (Hz) ↓":"F1, first formant (Hz) ↓ closed to open"}</text>`;
+  const poly=["i","e","a","o","u"].map(k=>{const v=V.find(x=>x[0]===k);return X(v[1])+","+Y(v[2])}).join(" ");
+  g+=`<polygon points="${poly}" fill="color-mix(in srgb,var(--pru) 8%,transparent)" stroke="var(--pru)" stroke-width="1.5" stroke-dasharray="5 5"/>`;
+  const big=V.filter(v=>v[3]==="large");
+  const bx=(X(big[0][1])+X(big[1][1]))/2,by=(Y(big[0][2])+Y(big[1][2]))/2;
+  g+=`<ellipse cx="${bx}" cy="${by}" rx="${Math.abs(X(big[0][1])-X(big[1][1]))/2+34}" ry="${Math.abs(Y(big[0][2])-Y(big[1][2]))/2+34}" fill="none" stroke="var(--car)" stroke-width="1.5" opacity=".7"/>`;
+  V.forEach(v=>{const x=X(v[1]),y=Y(v[2]);const hot=v[3]==="small";g+=`<circle cx="${x}" cy="${y}" r="${hot?22:18}" fill="${hot?"var(--car)":"var(--bg)"}" stroke="${hot?"var(--car)":"var(--pru)"}" stroke-width="2.5"/><text x="${x}" y="${y+6}" text-anchor="middle" font-size="18" font-weight="600" fill="${hot?"#fff":"var(--pru)"}" style="stroke:none">/${v[0]}/</text>`});
+  const iv=V[0];
+  g+=`<text x="${X(iv[1])+30}" y="${Y(iv[2])+4}" font-size="14" font-weight="600" fill="var(--car)">${narrow?"“small”":"often in words for “small”"}</text>`;
+  g+=`<text x="${bx}" y="${by+Math.abs(Y(big[0][2])-Y(big[1][2]))/2+56}" text-anchor="middle" font-size="14" font-weight="600" fill="var(--car)">${narrow?"judged “large”":"judged “large” in experiments"}</text>`;
+  s.innerHTML=g;
+};
+const vowelObs=new ResizeObserver(draw);vowelObs.observe(s);draw();
+}
+</script>
+</body>
+</html>
