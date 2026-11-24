@@ -81,7 +81,7 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
 <nav aria-label="Main"><div class="wrap">
   <a class="brand" href="index.html">AYAMAI</a>
   <div class="links">
-    <a href="dreams.html">DREAMS</a><a href="sphota.html" aria-current="page">Sphota</a><a href="#method">Method</a><a href="#collaborate">Collaborate</a>
+    <a href="dreams.html">DREAMS</a><a href="sphota.html" aria-current="page">Sphota</a><a href="#formants">Formants</a><a href="#method">Method</a><a href="vision.html">Vision note</a><a href="#collaborate">Collaborate</a>
   </div>
 </div></nav>
 
@@ -92,6 +92,32 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
   <div class="fig" id="vowel" role="img" aria-label="Vowel chart plotting first formant against second formant for the vowels i, e, a, o and u. The vowel i, often found in words for small things, sits at high second formant and low first formant. Open and back vowels sit in the region associated with large size in experiments."><svg id="vowelSvg"></svg></div>
   <p class="cap">Where the known evidence starts. The five vowels plotted by their first two resonances (formants), with approximate adult averages. Experiments since Sapir (1929) find that people link /i/ with small things and open or back vowels with large ones, and Blasi et al. (2016) found /i/ over-represented in words for “small” across thousands of languages. These are statistical tendencies, not rules.</p>
 </div></header>
+
+<section class="band" id="formants" style="border-top:1px solid var(--rule)"><div class="wrap">
+  <div class="split">
+    <div>
+      <h2>What formants are</h2>
+      <p>The voice has two parts. The vocal folds buzz at a basic rate, the pitch (f0), producing a sound rich in harmonics. The throat, mouth and lips then act as a filter, letting some frequencies through strongly and damping others.</p>
+      <p>The peaks this filter creates are called <b>formants</b>. They are numbered from the lowest: F1, F2, F3. Moving the tongue, jaw and lips changes the shape of the tube, which moves the formants, and that is how we make different vowels.</p>
+      <p>Pitch and formants are independent. Say “ee” in a low voice and then a high voice: the pitch changes, the formants stay roughly where they are, and listeners still hear “ee”. That is why formants, not pitch, identify vowels across speakers.</p>
+    </div>
+    <div>
+      <div class="fig" id="spec" style="margin-top:0;min-height:320px" role="img" aria-label="Spectrum of a neutral vowel: evenly spaced harmonics from the vocal folds, shaped by an envelope with three peaks labelled F1 near 500 hertz, F2 near 1500 and F3 near 2500."><svg id="specSvg"></svg></div>
+      <p class="cap">One moment of a neutral vowel, like the “a” in “about”. Thin lines are harmonics of the voice; the curve is the filter shaped by the mouth. Its peaks are the formants, near 500, 1500 and 2500 Hz for an adult male voice.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:48px;font-size:clamp(24px,2.6vw,30px)">How to read the vowel chart</h2>
+  <div class="qs" style="margin-top:18px">
+    <div><h3>F1: how open the mouth is</h3><p>A closed vowel like /i/ in “see” has a low F1, about 300 Hz. An open vowel like /a/ in “father”, with the jaw dropped, has a high F1, about 750 Hz.</p></div>
+    <div><h3>F2: tongue front or back</h3><p>With the tongue pushed forward, as in /i/, F2 is high, above 2000 Hz. With it pulled back, as in /u/ in “food”, F2 is low, under 1000 Hz. Rounding the lips lowers it further.</p></div>
+    <div><h3>Why the axes run “backwards”</h3><p>By convention F1 increases downward and F2 decreases to the right. Drawn this way, the chart matches the mouth seen from the side: the top is tongue high, the left is tongue forward. The five vowels form the familiar vowel triangle.</p></div>
+    <div><h3>What the marks show</h3><p>The dashed shape is the space the five vowels span. The red /i/ is over-represented in words for “small” across many languages. The red ring marks open and back vowels, which people judge as “large” in experiments.</p></div>
+  </div>
+
+  <h3 style="margin-top:34px">What this means for Sphota</h3>
+  <p>If sound carries some meaning across languages, this is one place it should be visible: words with related meanings would lean toward the same region of the chart. The known size effect fits a physical story too. Small resonating cavities make high frequencies, and many animals signal small size with high sounds, so /i/ for “small” may come from that frequency code rather than from meaning as such. Separating these explanations is the point of the study. The values shown are approximate averages for adult men; women’s and children’s formants are higher, so real analyses normalise for each speaker. MFCCs, the features used in speech recognition, summarise the same filter shape more coarsely.</p>
+</div></section>
 
 <section class="band" style="border-top:1px solid var(--rule)"><div class="wrap">
   <h2>Where the question comes from</h2>
@@ -211,6 +237,25 @@ const draw=()=>{
   s.innerHTML=g;
 };
 const vowelObs=new ResizeObserver(draw);vowelObs.observe(s);draw();
+
+const sp=document.getElementById("specSvg");
+const F=[[500,1,"F1"],[1500,.72,"F2"],[2500,.5,"F3"]];
+const env=f=>Math.min(1,F.reduce((a,p)=>a+p[1]*Math.exp(-((f-p[0])**2)/(2*150**2)),0)+.06*Math.exp(-f/1500));
+const drawSpec=()=>{
+  const W=sp.clientWidth,H=sp.clientHeight;if(!W||!H)return;
+  const narrow=W<480,L=16,R=16,T=40,B=40,fmax=3500;
+  const X=f=>L+f/fmax*(W-L-R),Y=a=>H-B-a*(H-T-B);
+  let g=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" stroke="var(--soft)"/>`;
+  for(let f=120;f<fmax;f+=120){g+=`<line x1="${X(f)}" y1="${H-B}" x2="${X(f)}" y2="${Y(env(f)*.92)}" stroke="var(--soft)" stroke-width="1.2" opacity=".55"/>`}
+  let d="";for(let f=0;f<=fmax;f+=20){d+=(f?"L":"M")+X(f).toFixed(1)+" "+Y(env(f)).toFixed(1)}
+  g+=`<path d="${d}" fill="none" stroke="var(--car)" stroke-width="3"/>`;
+  F.forEach(p=>{const x=X(p[0]),y=Y(env(p[0]));g+=`<circle cx="${x}" cy="${y}" r="5" fill="var(--car)"/><text x="${x}" y="${y-12}" text-anchor="middle" font-size="15" font-weight="600" fill="var(--car)">${p[2]}</text>`});
+  (narrow?[1000,2000,3000]:[500,1000,1500,2000,2500,3000]).forEach(f=>{g+=`<text x="${X(f)}" y="${H-B+20}" text-anchor="middle" font-size="13" fill="var(--soft)">${f}</text>`});
+  g+=`<text x="${W-R}" y="${H-4}" text-anchor="end" font-size="13" fill="var(--soft)">Frequency (Hz)</text>`;
+  g+=`<text x="${W-R}" y="${T-18}" text-anchor="end" font-size="13" fill="var(--soft)">${narrow?"loudness":"loudness of each harmonic"}</text>`;
+  sp.innerHTML=g;
+};
+const specObs=new ResizeObserver(drawSpec);specObs.observe(sp);drawSpec();
 }
 </script>
 </body>

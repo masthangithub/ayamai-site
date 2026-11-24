@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AYAMAI Vision Note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE  quiet, archival: a founder's notebook kept on the record
+   IDEA   a bound research notebook with a dated timeline on its first page
+   PICTURE a timeline from the 2024 notes to the two projects of today
+   COLOUR same AYAMAI palette: white, ink, carmine for DREAMS, prussian for Sphota
+   TYPE   Literata for reading, Inter for labels
+   LAYOUT title and timeline on top, contents row, then one calm reading column */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f1217);--ink:light-dark(#10131a,#e7e9ef);--soft:light-dark(#4a5160,#a9b0bf);--rule:light-dark(#dfe2e8,#272c36);--panel:light-dark(#f5f6f8,#161a22);--car:light-dark(#c1121f,#ff6b6b);--pru:light-dark(#0b4f8a,#77b2ec)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Literata,Georgia,serif;overflow-x:clip}
+a{color:var(--pru)}
+a:focus-visible{outline:3px solid var(--car);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,4.6vw,52px);max-width:20ch}
+h2{font-size:clamp(24px,2.6vw,30px);margin-bottom:10px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:0 0 14px;max-width:68ch}
+ul{margin:0 0 14px;padding-left:22px;max-width:66ch}
+li{margin-bottom:6px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px)}
+.brand{font-weight:700;font-size:20px;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+.links{display:flex;gap:4px 18px;flex-wrap:wrap;font:500 15px Inter,system-ui,sans-serif}
+.links a{color:var(--soft);text-decoration:none;padding:8px 0}
+.links a:hover,.links a[aria-current]{color:var(--ink)}
+.top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:start}
+.lede{font-size:clamp(18px,1.6vw,20px);color:var(--soft);margin:0}
+.orig{font:15px Inter,system-ui,sans-serif;margin-top:16px;color:var(--soft)}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:999px;font:600 15px Inter,system-ui,sans-serif;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink);margin-top:14px}
+.time{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));max-width:none}
+.time li{position:relative;padding:40px 14px 0 0;font:15px/1.45 Inter,system-ui,sans-serif;margin:0}
+.time li::before{content:"";position:absolute;top:11px;left:0;right:0;height:2px;background:var(--rule)}
+.time li::after{content:"";position:absolute;top:3px;left:0;width:18px;height:18px;border-radius:50%;background:var(--bg);border:4px solid var(--soft)}
+.time li.d::after{border-color:var(--car)}.time li.s::after{border-color:var(--pru)}
+.time b{display:block;font-size:16px}
+.time span{color:var(--soft)}
+.toc{display:flex;gap:8px 22px;overflow-x:auto;padding:14px max(5vw,16px);border-block:1px solid var(--rule);background:var(--panel);font:500 14px Inter,system-ui,sans-serif}
+.toc a{flex:none;color:var(--soft);text-decoration:none;padding:6px 0}
+.toc a:hover{color:var(--ink)}
+.read{max-width:1240px}
+.sec{padding-block:28px;border-bottom:1px solid var(--rule)}
+.sec:last-child{border-bottom:0}
+.head{display:flex;align-items:baseline;gap:8px 14px;flex-wrap:wrap;margin-bottom:6px}
+.head h2{margin:0}
+.tag{font:600 13px Inter,system-ui,sans-serif;white-space:nowrap;padding:2px 10px;border-radius:999px;border:1px solid currentColor}
+.tag.d{color:var(--car)}.tag.s{color:var(--pru)}
+.date{font:14px Inter,system-ui,sans-serif;color:var(--soft)}
+.ex{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:12px 0 16px;font-size:16px;max-width:68ch}
+.refs li{font-size:16px}
+footer{border-top:1px solid var(--rule);font:14px Inter,system-ui,sans-serif;color:var(--soft)}
+footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+@media(min-width:900px){.toc{position:sticky;top:61px;z-index:4}}
+@media(max-width:860px){.top{grid-template-columns:minmax(0,1fr)}.time{grid-template-columns:minmax(0,1fr)}.time li{padding:0 0 18px 32px}.time li::before{top:0;bottom:0;left:8px;right:auto;width:2px;height:auto}.time li::after{top:2px}}
+@media(max-width:600px){.links{font-size:14px;gap:2px 14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><div class="wrap">
+  <a class="brand" href="index.html">AYAMAI</a>
+  <div class="links">
+    <a href="dreams.html">DREAMS</a><a href="sphota.html">Sphota</a><a href="vision.html" aria-current="page">Vision note</a>
+    <a href="https://github.com/masthangithub/Ayamai">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="band"><div class="wrap">
+  <div class="top">
+    <h1>The original vision note</h1>
+    <div>
+      <p class="lede">AYAMAI began as a set of personal notes published in 2024, written while the project was “still an idea”. Both DREAMS and Sphota grew out of them. This page keeps a section-by-section summary here, because the original page is sometimes unavailable.</p>
+      <p class="orig">These are early notes, summarised faithfully. They record where the thinking started; the project pages describe what we now aim to test.</p>
+      <a class="btn" href="https://maya19.godaddysites.com/">Open the original page</a>
+    </div>
+  </div>
+  <ol class="time">
+    <li><b>2024</b><span>Vision notes published: dreams, understanding, feelings and words.</span></li>
+    <li><b>27 March 2024</b><span>The “limitation theorem”: learning through a small hole in a wall.</span></li>
+    <li><b>6 September 2024</b><span>Notes on language as flow, and on sound as the carrier of meaning.</span></li>
+    <li class="d"><b>2025</b><span>First Python prototypes of the dream and memory loops.</span></li>
+    <li class="s"><b>2026</b><span>Two separate projects: DREAMS and Sphota.</span></li>
+  </ol>
+</div></header>
+
+<div class="toc" aria-label="Sections">
+  <a href="#objective">Objective</a><a href="#dreams">Dreams</a><a href="#words">Words and patterns</a><a href="#thought">Thought and learning</a><a href="#feelings">Feelings and words</a><a href="#limitation">Limitation theorem</a><a href="#language">Views on language</a><a href="#sound">Sound tokens</a><a href="#sanskrit">Sanskrit roots</a><a href="#refs">References</a>
+</div>
+
+<main class="band" style="padding-top:12px"><div class="wrap read">
+
+<section class="sec" id="objective">
+  <div class="head"><h2>Objective</h2></div>
+  <p>The human mind keeps dreaming, imagining and thinking, a process the note calls “data relations entropy”. Humans question, think, search, learn and apply what they learn. The aim was to build on current AI algorithms toward a machine that does the same: an agent that thinks and dreams with the data it has collected, searches for new content, raises its own questions and keeps learning over time.</p>
+  <p>The note also states the author’s personal belief that humans are intelligent agents created by a greater intelligence, and that the human mind is what inspired neural networks.</p>
+</section>
+
+<section class="sec" id="dreams">
+  <div class="head"><h2>Dreams</h2><span class="tag d">Led to DREAMS</span></div>
+  <ul>
+    <li><b>Entropy</b> is taken as a measure of the possible arrangements of data and their relations, so it reflects uncertainty and disorder.</li>
+    <li><b>The goal</b> is a program that links data to other data and forms stories, meaningful or absurd, the way dreams are.</li>
+    <li><b>Narration</b> differs from computation: a calculation ends in a result, while a narration has no fixed end. It runs in an open loop until paused, and new data can open new questions.</li>
+  </ul>
+  <h3>Understanding (U) and Data (D)</h3>
+  <p>The note admits it is not known how understanding is created. Reading or watching something produces understanding (U). To share it, we encode it as data (D), and another mind decodes that data into its own understanding.</p>
+  <p><b>Understanding Intelligence (UI)</b> is the repeated cycle: understanding broken into attributes and behaviours and stored as data, and data turned back into understanding, creating new U and new D each time.</p>
+  <div class="ex">Examples in the note: Ayurveda is hard to grasp today because its concepts were never fully turned into data; an image, by contrast, is stored as data and can be rebuilt as an image.</div>
+  <p>Two further goals are listed: drawing causal inferences from changing data and from acting on the world, and answering Angus Fletcher’s argument that AI cannot surpass human storytelling.</p>
+</section>
+
+<section class="sec" id="words">
+  <div class="head"><h2>Words and patterns</h2><span class="tag d">Led to DREAMS</span></div>
+  <p>A matrix of words is described as the base of understanding and of natural feelings, with patterns linking words to express them. Patterns not yet expressed are “thoughts in chaos”; meditation is mentioned as a way to watch thoughts without taking them as real.</p>
+  <p>The note proposes a layered model:</p>
+  <ul>
+    <li>Understanding and feelings</li>
+    <li>Sound chunks, that is, words</li>
+    <li>Word patterns shaped by context, time and attention</li>
+    <li>Alternating CBOW and skip-gram word models with controlled randomness, producing loops of thought</li>
+  </ul>
+  <p>Reinforcement learning with rewards could steer these loops toward goals, which can be paused and resumed.</p>
+</section>
+
+<section class="sec" id="thought">
+  <div class="head"><h2>Thought and learning</h2><span class="tag d">Led to DREAMS</span></div>
+  <p><b>Māyā</b> is described as nature’s measurable framework, through which energy becomes matter, with five limiting factors: kāla (time-boundness), vidyā (limited knowing), rāga (attachment, “mineness”), niyati (causality) and kalā (being a separate entity). The note then traces a sequence from feelings to words, word patterns, thoughts and dreaming, ending in ignorance when one identifies with one’s thoughts. Truth is called absolute and reality relative.</p>
+  <p><b>Learning</b> is defined as remembering, relating, repeating and applying. <b>Understanding</b> is creating new word patterns and new links in data, or using data for a purpose. Stories are built from data, broken back into data, and tagged with features for reuse.</p>
+  <div class="ex">Event-based learning: the author once walked into a glass door after confusing push and pull, and was careful from then on. One event was enough. Human learning, the note argues, is not only statistical.</div>
+</section>
+
+<section class="sec" id="feelings">
+  <div class="head"><h2>Emotions, feelings and words</h2><span class="tag s">Led to Sphota</span><span class="tag d">Led to DREAMS</span></div>
+  <p>Feelings arise in the body before language. Words form when sound is shaped by the throat, mouth and tongue. The note proposes that most words express feelings, even ordinary ones such as standing, sitting, going and crying, and that feelings such as pleasure, pain, love, anger, joy, fear and certainty could act as rewards for a recurrent neural network.</p>
+  <ul>
+    <li>Word vectors are discrete; the note asks for a continuous representation of feelings, and whether mathematics is inherent in nature. It also uses the term “quantum impedance” for a resistance that lets energy become measurable.</li>
+    <li>Generative AI is described as predicting the next word, which is not the same as thinking.</li>
+    <li>Ancient knowledge, the note argues, was passed down in metaphors that were later misread. The five elements of earth, air, space, fire and water are read as metaphors for attraction, spread, dimension, transformation and flow. Suśruta, Caraka, Nāgārjuna, Patañjali and Pāṇini are named.</li>
+    <li>Chakras are pictured as layers whose nodes are sounds, joined by nāḍīs, with viśuddhi as the output layer.</li>
+    <li>“Effect thought” reverses a usual order, for example happiness as the cause of wealth, and proposes thinking without words.</li>
+    <li>Planned study: matrices, kernels, ranks and eigenvalues, and an architecture based on Fourier and Laplace transforms that works on sound frequencies and intensities to reduce complexity.</li>
+  </ul>
+</section>
+
+<section class="sec" id="limitation">
+  <div class="head"><h2>The limitation theorem</h2><span class="date">27 March 2024</span></div>
+  <p>The aim is to cut the cost of machine learning, which today trains on very large datasets and adjusts weights until outputs match.</p>
+  <div class="ex">The wall: person H sees the world only through a small hole in a wall, a few items at a time. Person G, on the other side, understands everything but can explain it only through examples small enough to pass through the hole. Humans and machines, learning from limited parameters, are in H’s position.</div>
+  <div class="ex">The child and the cat: a child sees a cat once and afterwards recognises cats in many shapes and settings. Does she pick and drop features according to context? Is memory generated afresh each time rather than retrieved?</div>
+</section>
+
+<section class="sec" id="language">
+  <div class="head"><h2>Views on language</h2><span class="date">6 September 2024</span></div>
+  <p>The note discusses David Bohm’s “rheomode”, language as flow, from <i>Wholeness and the Implicate Order</i>, and linguistic relativity, the Sapir–Whorf idea that language shapes thought. The film <i>Arrival</i> and its alien language Heptapod B serve as an example of perceiving time non-linearly.</p>
+  <p>Suggested reading: work on linguistic relativity by Sapir and Whorf, <i>The Symbolic Species</i> by Terrence Deacon, and <i>The Language Instinct</i> by Steven Pinker.</p>
+</section>
+
+<section class="sec" id="sound">
+  <div class="head"><h2>A sound and frequency model</h2><span class="tag s">Led to Sphota</span></div>
+  <p>Inspired by the oral transmission of the Vedas, the note proposes “sound tokens” described by pitch, frequency, amplitude and duration, in place of word tokens. It expects richer emotional nuance and cultural insight, and acknowledges technical challenges.</p>
+  <p>Animals are cited as less bound by language: birds weave nests, squirrels gather materials, and birds appear to sense changes in climate. Human limits are named too, including fragmented thinking (after Bohm), sensory overload and cultural conditioning, with mindfulness, meditation and art as ways beyond words.</p>
+</section>
+
+<section class="sec" id="sanskrit">
+  <div class="head"><h2>A Sanskrit root-based language model</h2><span class="tag s">Led to Sphota</span></div>
+  <p>The note explores models built on Sanskrit verbal roots (dhātu) and affixes instead of whole-word tokens. The hoped-for benefits are a smaller vocabulary, systematic word formation, better generalisation, lower training cost and use across languages.</p>
+  <div class="ex">From <i>gam</i>, “to go”, come words for arrival (āgamana) and going (gamana). From <i>vid</i>, “to know”, come vidyā (knowledge), vidvān (a scholar) and avidyā (ignorance).</div>
+</section>
+
+<section class="sec" id="refs">
+  <div class="head"><h2>References linked in the note</h2></div>
+  <ul class="refs">
+    <li><a href="https://venturebeat.com/2021/03/19/why-machine-learning-struggles-with-causality/amp/">Why machine learning struggles with causality</a>, VentureBeat, 2021</li>
+    <li><a href="https://www.su.org/feedback-loop/why-storytelling-will-prevent-ai-dominance">Why storytelling will prevent AI dominance</a>, Singularity University</li>
+    <li><a href="https://aclanthology.org/2020.icon-main.30.pdf">Sanskrit–English neural machine translation</a>, ICON 2020, ACL Anthology</li>
+    <li><a href="https://link.springer.com/chapter/10.1007/978-3-031-35501-1_22">An LSTM model for Sanskrit-to-English translation</a>, Springer</li>
+    <li><a href="https://link.springer.com/content/pdf/10.1007/s41870-019-00340-8.pdf">Neural machine translation for Sanskrit</a>, Springer</li>
+    <li><a href="https://arxiv.org/abs/2106.05852">Automatic speech recognition in Sanskrit</a>, arXiv 2021</li>
+  </ul>
+  <p class="date">Titles above are descriptive; follow each link for the full reference.</p>
+</section>
+
+</div></main>
+
+<footer class="band" style="padding-block:24px"><div class="wrap">
+  <span>AYAMAI · an open research initiative</span>
+  <span><a href="index.html">AYAMAI home</a> · <a href="https://github.com/masthangithub/Ayamai">GitHub</a></span>
+</div></footer>
+</body>
+</html>
