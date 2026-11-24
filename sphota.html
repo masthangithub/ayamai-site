@@ -25,9 +25,9 @@ a:focus-visible{outline:3px solid var(--car);outline-offset:3px;border-radius:4p
 .wrap{max-width:1240px;margin:0 auto}
 .band{padding-block:clamp(36px,5vw,80px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
 h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;margin:0}
-h1{font-size:clamp(34px,4.6vw,52px);max-width:22ch}
-h2{font-size:clamp(28px,3.2vw,38px);margin-bottom:18px}
-h3{font-size:20px;margin-bottom:6px;line-height:1.25}
+h1{font-size:clamp(28px,3.8vw,44px);max-width:22ch}
+h2{font-size:clamp(23px,2.7vw,32px);margin-bottom:18px}
+h3{font-size:19px;margin-bottom:6px;line-height:1.25}
 p{margin:0 0 14px;max-width:66ch}
 nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
 nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px)}
@@ -53,7 +53,7 @@ svg text{font-family:Inter,system-ui,sans-serif;paint-order:stroke;stroke:var(--
 .find b{display:block;font-weight:600}
 .find p{font-size:16px;margin:0}
 .find .src{font:13.5px Inter,system-ui,sans-serif;color:var(--soft);margin-top:4px}
-.hyp{font-size:clamp(20px,2vw,24px);line-height:1.45;border-left:3px solid var(--car);padding:4px 0 4px 20px;max-width:56ch;margin:8px 0 22px}
+.hyp{font-size:clamp(18px,1.8vw,22px);line-height:1.45;border-left:3px solid var(--car);padding:4px 0 4px 20px;max-width:56ch;margin:8px 0 22px}
 .blue{background:var(--band);color:var(--bandink)}
 .blue p,.blue .note{color:#d5e2ef}
 .route{list-style:none;padding:0;margin:28px 0 8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -75,6 +75,9 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
 @media(max-width:900px){.cols,.split{grid-template-columns:minmax(0,1fr)}.agents{grid-template-columns:repeat(2,minmax(0,1fr))}.route{grid-template-columns:minmax(0,1fr)}.route li{padding:0 0 20px 34px}.route li::before{top:0;bottom:0;left:8px;right:auto;width:2px;height:auto}.route li::after{top:2px}}
 @media(max-width:600px){.qs,.agents{grid-template-columns:minmax(0,1fr)}.links{font-size:14px;gap:2px 14px}.fig{min-height:360px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:600px){nav .wrap{gap:4px;padding-block:8px}.brand{width:100%}.links{flex-wrap:nowrap;overflow-x:auto;width:100%;gap:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.links::-webkit-scrollbar{display:none}.links a{flex:none;padding:6px 0}}
+@media(max-width:380px){body{font-size:16px}.band{padding-left:14px;padding-right:14px}.btn{padding:0 16px}}
+img,svg{max-width:100%}
 </style>
 </head>
 <body>
@@ -107,7 +110,7 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
     </div>
   </div>
 
-  <h2 style="margin-top:48px;font-size:clamp(24px,2.6vw,30px)">How to read the vowel chart</h2>
+  <h2 style="margin-top:48px;font-size:clamp(21px,2.3vw,26px)">How to read the vowel chart</h2>
   <div class="qs" style="margin-top:18px">
     <div><h3>F1: how open the mouth is</h3><p>A closed vowel like /i/ in “see” has a low F1, about 300 Hz. An open vowel like /a/ in “father”, with the jaw dropped, has a high F1, about 750 Hz.</p></div>
     <div><h3>F2: tongue front or back</h3><p>With the tongue pushed forward, as in /i/, F2 is high, above 2000 Hz. With it pulled back, as in /u/ in “food”, F2 is low, under 1000 Hz. Rounding the lips lowers it further.</p></div>

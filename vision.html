@@ -25,8 +25,8 @@ a:focus-visible{outline:3px solid var(--car);outline-offset:3px;border-radius:4p
 .wrap{max-width:1240px;margin:0 auto}
 .band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
 h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.12;text-wrap:balance;margin:0}
-h1{font-size:clamp(34px,4.6vw,52px);max-width:20ch}
-h2{font-size:clamp(24px,2.6vw,30px);margin-bottom:10px}
+h1{font-size:clamp(28px,3.8vw,44px);max-width:20ch}
+h2{font-size:clamp(21px,2.3vw,26px);margin-bottom:10px}
 h3{font-size:18px;margin:20px 0 4px}
 p{margin:0 0 14px;max-width:68ch}
 ul{margin:0 0 14px;padding-left:22px;max-width:66ch}
@@ -67,6 +67,9 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
 @media(max-width:860px){.top{grid-template-columns:minmax(0,1fr)}.time{grid-template-columns:minmax(0,1fr)}.time li{padding:0 0 18px 32px}.time li::before{top:0;bottom:0;left:8px;right:auto;width:2px;height:auto}.time li::after{top:2px}}
 @media(max-width:600px){.links{font-size:14px;gap:2px 14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:600px){nav .wrap{gap:4px;padding-block:8px}.brand{width:100%}.links{flex-wrap:nowrap;overflow-x:auto;width:100%;gap:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.links::-webkit-scrollbar{display:none}.links a{flex:none;padding:6px 0}}
+@media(max-width:380px){body{font-size:16px}.band{padding-left:14px;padding-right:14px}.btn{padding:0 16px}}
+img,svg{max-width:100%}
 </style>
 </head>
 <body>
