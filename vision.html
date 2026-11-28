@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>AYAMAI Vision Note</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox=%220 0 100 100%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cmask id=%22g%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23fff%22/%3E%3Ccircle cx=%2274.75%22 cy=%2225.25%22 r=%2210%22 fill=%22%23000%22/%3E%3C/mask%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2235%22 fill=%22none%22 stroke=%22%23c2127a%22 stroke-width=%2213%22 mask=%22url(%23g)%22/%3E%3Ccircle cx=%2274.75%22 cy=%2225.25%22 r=%226.5%22 fill=%22%231559b7%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* VOICE  quiet, archival: a founder's notebook kept on the record
    IDEA   a bound research notebook with a dated timeline on its first page
@@ -14,12 +16,12 @@
    COLOUR same AYAMAI palette: white, ink, carmine for DREAMS, prussian for Sphota
    TYPE   Literata for reading, Inter for labels
    LAYOUT title and timeline on top, contents row, then one calm reading column */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f1217);--ink:light-dark(#10131a,#e7e9ef);--soft:light-dark(#4a5160,#a9b0bf);--rule:light-dark(#dfe2e8,#272c36);--panel:light-dark(#f5f6f8,#161a22);--car:light-dark(#c1121f,#ff6b6b);--pru:light-dark(#0b4f8a,#77b2ec)}
-:root[data-theme=light]{color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
+:root{color-scheme:light;--bg:#ffffff;--ink:#10131a;--soft:#4a5160;--rule:#dfe2e8;--panel:#f5f6f8;--car:#c2127a;--pru:#1559b7}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#0f1217;--ink:#e7e9ef;--soft:#a9b0bf;--rule:#272c36;--panel:#161a22;--car:#ff63b4;--pru:#7fb0ff}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#0f1217;--ink:#e7e9ef;--soft:#a9b0bf;--rule:#272c36;--panel:#161a22;--car:#ff63b4;--pru:#7fb0ff}
 *{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:72px;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Literata,Georgia,serif;overflow-x:clip}
+html{overflow-x:hidden;scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Literata,Georgia,serif;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 a{color:var(--pru)}
 a:focus-visible{outline:3px solid var(--car);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1240px;margin:0 auto}
@@ -31,9 +33,9 @@ h3{font-size:18px;margin:20px 0 4px}
 p{margin:0 0 14px;max-width:68ch}
 ul{margin:0 0 14px;padding-left:22px;max-width:66ch}
 li{margin-bottom:6px}
-nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
 nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px)}
-.brand{font-weight:700;font-size:20px;letter-spacing:.01em;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand{display:flex;align-items:baseline;gap:.14em;font-family:Nunito,Inter,system-ui,sans-serif;font-weight:600;font-size:20px;line-height:1;letter-spacing:.03em;color:var(--ink);text-decoration:none;margin-right:auto}
 .links{display:flex;gap:4px 18px;flex-wrap:wrap;font:500 15px Inter,system-ui,sans-serif}
 .links a{color:var(--soft);text-decoration:none;padding:8px 0}
 .links a:hover,.links a[aria-current]{color:var(--ink)}
@@ -70,11 +72,12 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
 @media(max-width:600px){nav .wrap{gap:4px;padding-block:8px}.brand{width:100%}.links{flex-wrap:nowrap;overflow-x:auto;width:100%;gap:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.links::-webkit-scrollbar{display:none}.links a{flex:none;padding:6px 0}}
 @media(max-width:380px){body{font-size:16px}.band{padding-left:14px;padding-right:14px}.btn{padding:0 16px}}
 img,svg{max-width:100%}
+.brand svg{width:.8675em;height:.8675em;flex:none;align-self:baseline;position:relative;top:.075em}
 </style>
 </head>
 <body>
 <nav aria-label="Main"><div class="wrap">
-  <a class="brand" href="index.html">AYAMAI</a>
+  <a class="brand" href="index.html" aria-label="AYAMAI home"><svg viewBox="0 0 100 100" aria-hidden="true"><mask id="mk1"><rect width="100" height="100" fill="#fff"/><circle cx="74.75" cy="25.25" r="10" fill="#000"/></mask><circle cx="50" cy="50" r="35" fill="none" stroke="var(--car)" stroke-width="13" mask="url(#mk1)"/><circle cx="74.75" cy="25.25" r="6.5" fill="var(--pru)"/></svg>AYAMAI</a>
   <div class="links">
     <a href="dreams.html">DREAMS</a><a href="sphota.html">Sphota</a><a href="vision.html" aria-current="page">Vision note</a>
     <a href="https://github.com/masthangithub/Ayamai">GitHub</a>

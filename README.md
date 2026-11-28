@@ -1,6 +1,6 @@
 # AYAMAI website
 
-Four static pages: `index.html` (AYAMAI home), `dreams.html` (DREAMS), `sphota.html` (Sphota) and `vision.html` (the original vision note). No build step.
+Four static pages: `index.html` (AYAMAI home), `dreams.html` (DREAMS), `sphota.html` (Sphota) and `vision.html` (the original vision note). No build step. `logo-mark.svg` is the AYAMAI mark (magenta ring, blue point) with a transparent background.
 
 ## Deploy on Render
 
